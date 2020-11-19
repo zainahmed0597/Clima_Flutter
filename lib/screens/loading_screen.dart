@@ -11,6 +11,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   Future<void> getLocation () async {
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+    print(position);
   }
 
   @override

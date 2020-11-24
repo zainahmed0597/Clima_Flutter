@@ -1,4 +1,4 @@
-import 'dart:io';
+ import 'dart:io';
 
 void main() {
   performTasks();
@@ -6,8 +6,8 @@ void main() {
 
 void performTasks() async{
   task1();
-  print(task2());
-  // task3(task2Result);
+  String task2Result = await task2();
+  //task3(task2Result);
 }
 
 void task1() {
@@ -15,7 +15,7 @@ void task1() {
   print('Task 1 complete');
 }
 
-Future<String>task2() async {
+Future <String> task2() async {
   Duration threeSeconds = Duration(seconds: 3);
   String result;
 

@@ -30,12 +30,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
       myMarginAsDouble = double.parse(MyMargin);
     } catch (e) {
       print(e);
-      myMarginAsDouble = 30.0;
     }
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.all(myMarginAsDouble),
+        margin: EdgeInsets.all(myMarginAsDouble ?? 30.0),
         color: Colors.red,
       ),
     );

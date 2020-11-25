@@ -8,23 +8,40 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-
   @override
   void initState() {
     super.initState();
     getLocation();
     print("initState called");
   }
-  Future<void> getLocation () async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+
+  Future<void> getLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low);
     print(position);
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Build called");
-    return Scaffold(
-    );
+    String MyMargin = 'abc ';
+
+    try {
+      double myMarginAsDouble = double.parse(MyMargin);
+      return Scaffold(
+        body: Container(
+          margin: EdgeInsets.all(myMarginAsDouble),
+          color: Colors.red,
+        ),
+      );
+    } catch (e) {
+      print(e);
+      return Scaffold(
+        body: Container(
+          margin: EdgeInsets.all(30),
+          color: Colors.red,
+        ),
+      );
+    }
   }
 
   @override

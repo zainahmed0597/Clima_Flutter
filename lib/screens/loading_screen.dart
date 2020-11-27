@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/location.dart';
+import 'package:http/http.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -16,33 +17,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void getLocation() async {
     Location location = Location();
+
     await location.getCurrentLocation();
+
     print(location.latitude);
     print(location.longitude);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    String myMargin = '15';
-    double myMarginAsDouble;
-
-    try {
-      myMarginAsDouble = double.parse(myMargin);
-    } catch (e) {
-      print(e);
-    }
-
-    return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(myMarginAsDouble ?? 30.0),
-        color: Colors.red,
-      ),
-    );
+  void getData() async {
+    Response response = await get(
+        'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=1724d5976c954bbed975b5b05033a1c7');
+    print(response.body);
   }
 
   @override
-  void deactivate() {
-    super.deactivate();
-    print("deactivate called");
+  Widget build(BuildContext context) {
+    getData();
+
+    return Scaffold();
   }
 }
